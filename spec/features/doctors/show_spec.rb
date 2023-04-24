@@ -28,10 +28,22 @@ RSpec.describe "Doctor's Show Page" do
 
     it "I see the names of all their patients" do
       visit doctor_path(@dr1)
-      within "#patients" do
+      within "#patient-#{@patient1.id}" do
         expect(page).to have_content("Katie Joe")
+        expect(page).to_not have_content("George Michael")
+        expect(page).to_not have_content("Wolf Blitz")
+        expect(page).to_not have_content("Maybe Bluth")
+      end
+      within "#patient-#{@patient2.id}" do
         expect(page).to have_content("George Michael")
+        expect(page).to_not have_content("Katie Joe")
+        expect(page).to_not have_content("Wolf Blitz")
+        expect(page).to_not have_content("Maybe Bluth")
+      end
+      within "#patient-#{@patient3.id}" do
         expect(page).to have_content("Wolf Blitz")
+        expect(page).to_not have_content("Katie Joe")
+        expect(page).to_not have_content("George Michael")
         expect(page).to_not have_content("Maybe Bluth")
       end
 
