@@ -18,5 +18,12 @@ RSpec.describe Doctor do
         expect(@dr2.hospital_name).to eq("MGHospital")
       end
     end
+
+    describe "#viewable_pats" do
+      it "returns all patients over 18 sorted by name ascending" do
+        expect(@dr1.viewable_pats).to eq([@patient2, @patient1])
+        expect(@dr2.viewable_pats).to eq([@patient4])
+      end
+    end
   end
 end

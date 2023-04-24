@@ -17,9 +17,9 @@ RSpec.describe Patient, type: :model do
       end
     end
 
-    describe "viewable_pats" do
-      it "returns all patients over 18 sorted by name in alphatical order" do
-        expect(Patient.viewable_pats).to eq([@patient2, @patient1, @patient4])
+    describe "viewable" do
+      it "returns all patients sorted by name in alphatical order" do
+        expect(Patient.viewable).to eq([@patient2, @patient1, @patient4, @patient3])
       end
     end
   end

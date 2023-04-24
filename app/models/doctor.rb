@@ -7,7 +7,11 @@ class Doctor < ApplicationRecord
     hospital.name
   end
 
+  # def viewable_pats
+  #   patients.where('patient.age >= ?', 18).order(name: :asc)
+  # end
+
   def viewable_pats
-    patients.where('patient.age >= ?', 18).order(age: :desc)
+    patients.over_18yrs.viewable
   end
 end

@@ -6,7 +6,7 @@ class Patient < ApplicationRecord
     Patient.where('age >= ?', 18)
   end
 
-  def self.viewable_pats
-    Patient.over_18yrs.order(:name)
+  def self.viewable
+    Patient.order(:name)
   end
 end
