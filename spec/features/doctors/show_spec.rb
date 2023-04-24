@@ -56,4 +56,32 @@ RSpec.describe "Doctor's Show Page" do
       end
     end
   end
+
+  describe "Remove Patient from a Doctor" do
+    it "has button next to each patient's name to remove from caseload" do
+      visit doctor_path(@dr1)
+
+      within "#patient-#{@patient1.id}" do
+        expect(page).to have_button("Remove")
+      end
+      within "#patient-#{@patient2.id}" do
+        expect(page).to have_button("Remove")
+      end
+      within "#patient-#{@patient3.id}" do
+        expect(page).to have_button("Remove")
+      end
+    end
+
+    it "click button to delete patient from only that dr and redirect back to that dr's show page" do
+      visit doctor_path(@dr1)
+      within "#patient-#{@patient3.id}" do
+        click_on("Remove")
+        # @patient3.reload
+      end
+      expect(current_path).to eq(doctor_path(@dr1))
+      expect(page).to_not have_content("Wolf Blitz")
+      visit doctor_path(@dr2)
+      expect(page).to have_content("Wolf Blitz")
+    end
+  end
 end
